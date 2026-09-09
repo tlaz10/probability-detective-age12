@@ -11,6 +11,7 @@
   --warm: #8b4b10;
   --warm-soft: #fff0df;
   --good: #1b6a43;
+  --good-soft: #e3f4eb;
 
   --good-ink: #12452d;
   --warm-ink: #653709;
@@ -333,5 +334,6 @@ code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
   .bar-track { background: #43545c; }
   table { background: var(--surface); }
 }
+
 
 
