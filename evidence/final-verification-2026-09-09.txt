@@ -1,3 +1,55 @@
+﻿Final verification started: 2026-09-09T08:29:42.0695402-04:00
+Chrome ProductVersion: 152.0.7977.83
+
+=== npm ci ===
+
+up to date, audited 1 package in 6s
+
+found 0 vulnerabilities
+EXIT_CODE=0
+
+=== npm test ===
+
+> probability-detective-age12@1.0.0 test
+> node --test tests/*.test.js
+
+Γ£ö seeded randomness is reproducible (1.398ms)
+Γ£ö coin counts sum to trials and proportions match counts (0.1749ms)
+Γ£ö p=0 and p=1 coins behave exactly as configured (0.0769ms)
+Γ£ö fair coin theoretical chance stays one half regardless of observations (0.0658ms)
+Γ£ö different sample sizes are generated rather than forced to perfect balance (0.0867ms)
+Γ£ö die rolls always stay from 1 through 6 (1.0166ms)
+Γ£ö two-dice sums stay from 2 through 12 and counts sum to trials (0.732ms)
+Γ£ö two-dice theoretical sum distribution has 36 routes and six routes to seven (0.1191ms)
+Γ£ö game fairness follows exact expected-point arithmetic (0.2308ms)
+Γ£ö game simulation points agree with displayed win counts and rewards (0.2091ms)
+Γ£ö final challenge is theoretically fair by the published rules (0.2076ms)
+Γ£ö learner shell contains all three required activity regions (0.5016ms)
+Γ£ö page provides privacy/reset language and no external runtime scripts (0.1592ms)
+Γ£ö reduced-motion and visible focus rules exist (0.0974ms)
+Γä╣ tests 14
+Γä╣ suites 0
+Γä╣ pass 14
+Γä╣ fail 0
+Γä╣ cancelled 0
+Γä╣ skipped 0
+Γä╣ todo 0
+Γä╣ duration_ms 83.5671
+EXIT_CODE=0
+
+=== npm run build ===
+
+> probability-detective-age12@1.0.0 build
+> node scripts/build.mjs
+
+Built static site at D:\CODING\FREELANCE_WORK\localswarm\2026-09-09\age12-probability\repo\dist
+EXIT_CODE=0
+
+=== npm run evidence ===
+
+> probability-detective-age12@1.0.0 evidence
+> node scripts/browser-evidence.mjs
+
 {
   "generatedAt": "2026-09-09T12:29:54.255Z",
   "browser": "Google Chrome headless (installed desktop Chrome) via Chrome DevTools Protocol",
@@ -46,7 +98,7 @@
     {
       "name": "incorrect streak answer gets counterexample feedback",
       "pass": true,
-      "details": "Not quite. Randomness does not “owe” a tail. A fair coin has P(heads) = 1/2 even after five heads."
+      "details": "Not quite. Randomness does not ΓÇ£oweΓÇ¥ a tail. A fair coin has P(heads) = 1/2 even after five heads."
     },
     {
       "name": "correct streak answer explains unchanged one-half chance",
@@ -76,17 +128,17 @@
     {
       "name": "designer publishes exact expected-point arithmetic",
       "pass": true,
-      "details": "\n    Side A: faces 1, 2 → P(A) = 2/6. Expected A = 2/6 × 2 = 0.667 points/round.\n    Side B: faces 3, 4, 5, 6 → P(B) = 4/6. Expected B = 4/6 × 1 = 0.667 points/round.\n    The rules are theoretically fair."
+      "details": "\n    Side A: faces 1, 2 ΓåÆ P(A) = 2/6. Expected A = 2/6 ├ù 2 = 0.667 points/round.\n    Side B: faces 3, 4, 5, 6 ΓåÆ P(B) = 4/6. Expected B = 4/6 ├ù 1 = 0.667 points/round.\n    The rules are theoretically fair."
     },
     {
       "name": "game simulation has 600 scoring outcomes",
       "pass": true,
-      "details": "\n    Side A simulation396 points198 scoring rolls × 2 points\n    Side B simulation402 points402 scoring rolls × 1 points"
+      "details": "\n    Side A simulation396 points198 scoring rolls ├ù 2 points\n    Side B simulation402 points402 scoring rolls ├ù 1 points"
     },
     {
       "name": "incorrect final fairness answer gets worked calculation",
       "pass": true,
-      "details": "Use the route counts to revise. North: P(sum 7) = 6/36, so expected points = 6/36 × 1 = 1/6. South: P(sum 2 or 12) = 2/36, so expected points = 2/36 × 3 = 6/36 = 1/6. The rules are fair. In this 2,000-round run North scored 346 and South scored 330; a tie was never required."
+      "details": "Use the route counts to revise. North: P(sum 7) = 6/36, so expected points = 6/36 ├ù 1 = 1/6. South: P(sum 2 or 12) = 2/36, so expected points = 2/36 ├ù 3 = 6/36 = 1/6. The rules are fair. In this 2,000-round run North scored 346 and South scored 330; a tie was never required."
     },
     {
       "name": "final challenge identifies theoretical fairness without promising a tie",
@@ -154,3 +206,11 @@
     "failed": 0
   }
 }
+EXIT_CODE=0
+
+Final verification finished: 2026-09-09T08:29:54.4741286-04:00
+
+=== Post-documentation recheck: 2026-09-09T08:34:53.4519240-04:00 ===
+git diff --check: PASS
+npm test: PASS — 14 passed, 0 failed
+npm run build: PASS

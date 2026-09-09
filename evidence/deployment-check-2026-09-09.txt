@@ -1,0 +1,8 @@
+﻿Deployment verification — 2026-09-09T08:31:46.5863872-04:00
+URL: https://tlaz10.github.io/probability-detective-age12/
+HTTP status: 200
+Final URI: https://tlaz10.github.io/probability-detective-age12/
+Content-Type: text/html; charset=utf-8
+Strict-Transport-Security: max-age=31556952
+Server: GitHub.com
+Title marker present: True

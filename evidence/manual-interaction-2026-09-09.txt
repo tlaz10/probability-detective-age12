@@ -1,0 +1,13 @@
+﻿Manual / interactive browser verification — 2026-09-09 EDT
+Browser: normal installed Google Chrome 152.0.7977.83
+Public preview: https://tlaz10.github.io/probability-detective-age12/
+
+Observed actions and outcomes performed interactively through the normal Chrome session:
+1. Loaded the public HTTPS preview and observed the Probability Detective onboarding.
+2. Activated “Start the case” and observed the Coin Laboratory.
+3. Activated “Run 10”; observed 5 heads + 5 tails = 10 trials, with table count/proportion values matching the visible result for that run.
+4. Selected the incorrect streak answer “Less than 1/2” and activated “Check my reasoning”; observed specific corrective feedback: randomness does not “owe” a tail and a fair coin remains P(heads)=1/2 after five heads.
+5. Activated “Reset all progress”; a native Chrome confirmation dialog appeared. Invoked OK through Windows UI Automation and then observed the onboarding again without a page reload.
+6. Started the lesson again. Through Windows UI Automation, focused the semantic button named “2. Dice investigation” and sent a real Enter key with SendKeys. Observed the Dice Investigation panel afterward, confirming keyboard activation of activity navigation.
+
+These checks used the normal interactive Chrome UI rather than the headless evidence harness. Touch and reduced-motion behavior are separately exercised by the reproducible Chrome/CDP evidence harness in evidence/browser-check.json.
