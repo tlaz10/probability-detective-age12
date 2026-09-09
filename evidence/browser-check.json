@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T05:01:19.753Z",
+  "generatedAt": "2026-09-09T06:12:14.979Z",
   "browser": "Google Chrome headless (installed desktop Chrome) via Chrome DevTools Protocol",
   "appUrl": "http://127.0.0.1:4173",
   "viewports": [
@@ -81,12 +81,12 @@
     {
       "name": "game simulation has 600 scoring outcomes",
       "pass": true,
-      "details": "\n    Side A simulation402 points201 scoring rolls × 2 points\n    Side B simulation399 points399 scoring rolls × 1 points"
+      "details": "\n    Side A simulation376 points188 scoring rolls × 2 points\n    Side B simulation412 points412 scoring rolls × 1 points"
     },
     {
       "name": "incorrect final fairness answer gets worked calculation",
       "pass": true,
-      "details": "Use the route counts to revise. North: P(sum 7) = 6/36, so expected points = 6/36 × 1 = 1/6. South: P(sum 2 or 12) = 2/36, so expected points = 2/36 × 3 = 6/36 = 1/6. The rules are fair. In this 2,000-round run North scored 318 and South scored 387; a tie was never required."
+      "details": "Use the route counts to revise. North: P(sum 7) = 6/36, so expected points = 6/36 × 1 = 1/6. South: P(sum 2 or 12) = 2/36, so expected points = 2/36 × 3 = 6/36 = 1/6. The rules are fair. In this 2,000-round run North scored 333 and South scored 339; a tie was never required."
     },
     {
       "name": "final challenge identifies theoretical fairness without promising a tie",
@@ -136,7 +136,7 @@
     {
       "name": "touch-targeted semantic button performs the experiment",
       "pass": true,
-      "details": "4 heads and 6 tails in 10 flips. Observed heads: 40.0%; theoretical heads: 50.0%. This sample differs from the model by 10.0 percentage points."
+      "details": "3 heads and 7 tails in 10 flips. Observed heads: 30.0%; theoretical heads: 50.0%. This sample differs from the model by 20.0 percentage points."
     },
     {
       "name": "reset returns to onboarding without page reload",
