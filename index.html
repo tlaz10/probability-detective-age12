@@ -1,0 +1,307 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Probability Detective: an interactive lesson about coins, dice, sample size, and fair games.">
+  <title>Probability Detective</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to lesson</a>
+  <header class="site-header">
+    <div class="brand-block">
+      <p class="eyebrow">Case file P-12</p>
+      <h1>Probability Detective</h1>
+      <p class="tagline">Follow the evidence. Keep theory and experiment separate.</p>
+    </div>
+    <div class="privacy-card" aria-label="Privacy and progress information">
+      <strong>Private by design</strong>
+      <span>Your progress stays only in this browser. No login, name, analytics, ads, or uploads.</span>
+      <button class="button button-quiet" id="reset-all" type="button">Reset all progress</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero panel" id="onboarding" aria-labelledby="onboarding-title">
+      <div>
+        <p class="eyebrow">10–15 minute investigation</p>
+        <h2 id="onboarding-title">Can short experiments fool a good detective?</h2>
+        <p>Random results can look strange in small samples. Your job is to make a prediction, run real simulations, and decide what the evidence does—and does not—show.</p>
+      </div>
+      <div class="objective-grid">
+        <article>
+          <span class="step-number">1</span>
+          <h3>Separate two ideas</h3>
+          <p><strong>Theoretical probability</strong> comes from a model. An <strong>experimental proportion</strong> comes from trials you actually ran.</p>
+        </article>
+        <article>
+          <span class="step-number">2</span>
+          <h3>Compare samples</h3>
+          <p>See why 10 trials can wander more than 1,000—without pretending a bigger sample must improve every single time.</p>
+        </article>
+        <article>
+          <span class="step-number">3</span>
+          <h3>Check fairness</h3>
+          <p>Use exact probabilities and point rules to decide whether two sides have equal expected advantage.</p>
+        </article>
+      </div>
+      <div class="start-row">
+        <div>
+          <p><strong>Prerequisite:</strong> comfortable with simple fractions, decimals, multiplication, and reading a table.</p>
+          <p class="muted">Predictions are for thinking, not grading. You can skip or revise any prediction and retry as often as you want.</p>
+        </div>
+        <button class="button button-primary" id="start-case" type="button">Start the case</button>
+      </div>
+    </section>
+
+    <section class="lesson-shell" id="lesson-shell" aria-label="Probability investigation" hidden>
+      <div class="progress-panel">
+        <div>
+          <p class="eyebrow">Case progress</p>
+          <p id="progress-text"><strong>0 of 3 investigations complete</strong></p>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="progress-bar">
+          <span id="progress-fill"></span>
+        </div>
+      </div>
+
+      <nav class="activity-nav" aria-label="Lesson activities">
+        <button type="button" class="nav-button is-active" data-view="coin" aria-current="page">1. Coin lab</button>
+        <button type="button" class="nav-button" data-view="dice">2. Dice investigation</button>
+        <button type="button" class="nav-button" data-view="game">3. Fair-game designer</button>
+        <button type="button" class="nav-button" data-view="summary">Case summary</button>
+      </nav>
+
+      <section class="activity panel" id="coin-lab" data-panel="coin" aria-labelledby="coin-title">
+        <header class="activity-header">
+          <div>
+            <p class="eyebrow">Investigation 1</p>
+            <h2 id="coin-title">Coin laboratory</h2>
+          </div>
+          <span class="status-badge" id="coin-status">Open case</span>
+        </header>
+
+        <div class="definition-strip" aria-label="Key definitions">
+          <p><strong>Theoretical probability:</strong> the chance predicted by the coin model before a flip.</p>
+          <p><strong>Experimental proportion:</strong> the share of heads or tails actually observed in this run.</p>
+        </div>
+
+        <div class="two-column">
+          <section class="work-card" aria-labelledby="coin-config-title">
+            <h3 id="coin-config-title">1. Set the model and predict</h3>
+            <label for="coin-prob">Theoretical chance of heads: <output id="coin-prob-output" for="coin-prob">50%</output></label>
+            <input id="coin-prob" type="range" min="0" max="100" value="50" step="5">
+            <p id="coin-type" class="model-label"><strong>Fair coin</strong> — heads and tails each have a 50% theoretical chance.</p>
+            <div class="preset-row" aria-label="Coin probability presets">
+              <button type="button" class="button button-small" data-coin-preset="0">0% heads</button>
+              <button type="button" class="button button-small" data-coin-preset="50">Fair 50%</button>
+              <button type="button" class="button button-small" data-coin-preset="100">100% heads</button>
+            </div>
+            <label for="coin-prediction">Before running: what percent heads do you predict? <span class="muted">Optional; 0–100</span></label>
+            <input id="coin-prediction" class="short-input" type="number" min="0" max="100" inputmode="decimal" placeholder="Skip or enter %">
+            <details class="hint">
+              <summary>Need a hint?</summary>
+              <p>Start from the theoretical probability, then remember a sample can land above or below it—especially a small one.</p>
+            </details>
+          </section>
+
+          <section class="work-card" aria-labelledby="coin-run-title">
+            <h3 id="coin-run-title">2. Generate evidence</h3>
+            <p>Choose a sample size. Every button generates new flips from the configured probability; the app never forces a tidy 50/50 result.</p>
+            <div class="trial-buttons" aria-label="Coin trial counts">
+              <button type="button" class="button button-primary" data-coin-trials="10">Run 10</button>
+              <button type="button" class="button button-primary" data-coin-trials="100">Run 100</button>
+              <button type="button" class="button button-primary" data-coin-trials="1000">Run 1,000</button>
+            </div>
+            <p class="muted">Random sampling uses browser-generated pseudorandom numbers. Test runs use a seeded generator for reproducibility.</p>
+          </section>
+        </div>
+
+        <section class="result-card" id="coin-result" aria-live="polite" aria-labelledby="coin-result-title">
+          <h3 id="coin-result-title">Evidence board</h3>
+          <p id="coin-result-empty">Run an experiment to compare theory with observation.</p>
+          <div id="coin-result-content" hidden>
+            <p class="result-lead" id="coin-result-lead"></p>
+            <div class="chart" id="coin-chart" aria-label="Coin observed and theoretical proportions"></div>
+            <div class="table-wrap">
+              <table>
+                <caption>Coin result data</caption>
+                <thead><tr><th scope="col">Outcome</th><th scope="col">Count</th><th scope="col">Experimental proportion</th><th scope="col">Theoretical probability</th></tr></thead>
+                <tbody id="coin-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="comparison-card" aria-labelledby="sample-compare-title">
+          <h3 id="sample-compare-title">Sample-size comparison</h3>
+          <p>Latest fair/biased-coin run at each required size appears here. A larger sample often gets closer to the theoretical proportion, but closeness does <strong>not</strong> have to improve step by step.</p>
+          <div class="comparison-grid" id="coin-comparison">
+            <p class="muted">Run 10, 100, and 1,000 trials to build your comparison.</p>
+          </div>
+        </section>
+
+        <section class="check-card" aria-labelledby="streak-title">
+          <h3 id="streak-title">3. Streak check</h3>
+          <fieldset>
+            <legend>A fair coin has just landed heads five times in a row. What is the theoretical chance of heads on the next independent flip?</legend>
+            <label><input type="radio" name="streak-answer" value="more"> More than 1/2</label>
+            <label><input type="radio" name="streak-answer" value="half"> Exactly 1/2</label>
+            <label><input type="radio" name="streak-answer" value="less"> Less than 1/2</label>
+          </fieldset>
+          <div class="action-row">
+            <button class="button" id="check-streak" type="button">Check my reasoning</button>
+            <button class="button button-quiet" id="coin-complete" type="button" disabled>Finish coin case</button>
+          </div>
+          <p class="feedback" id="streak-feedback" aria-live="polite"></p>
+        </section>
+      </section>
+
+      <section class="activity panel" id="dice-lab" data-panel="dice" aria-labelledby="dice-title" hidden>
+        <header class="activity-header">
+          <div><p class="eyebrow">Investigation 2</p><h2 id="dice-title">Dice investigation</h2></div>
+          <span class="status-badge" id="dice-status">Open case</span>
+        </header>
+        <div class="definition-strip">
+          <p>A fair six-sided die gives each face a theoretical probability of <strong>1/6</strong>.</p>
+          <p>With two dice, <strong>sums are not equally likely</strong> because some sums can be made in more ordered ways than others.</p>
+        </div>
+
+        <div class="two-column">
+          <section class="work-card">
+            <h3>1. Predict and choose a model</h3>
+            <fieldset>
+              <legend>With two fair dice, which sum should appear most often over many rolls? <span class="muted">Optional</span></legend>
+              <label><input type="radio" name="dice-prediction" value="2"> 2</label>
+              <label><input type="radio" name="dice-prediction" value="7"> 7</label>
+              <label><input type="radio" name="dice-prediction" value="12"> 12</label>
+            </fieldset>
+            <label for="dice-mode">Experiment</label>
+            <select id="dice-mode">
+              <option value="single">One fair six-sided die</option>
+              <option value="sum" selected>Sum of two fair dice</option>
+            </select>
+            <details class="hint"><summary>Hint: count routes</summary><p>For a sum of 2, only 1+1 works. For a sum of 7, try listing every ordered pair that works.</p></details>
+          </section>
+          <section class="work-card">
+            <h3>2. Roll real samples</h3>
+            <p>Compare small, medium, and larger samples. The chart and table are both calculated from the generated rolls.</p>
+            <div class="trial-buttons">
+              <button class="button button-primary" type="button" data-dice-trials="60">Roll 60</button>
+              <button class="button button-primary" type="button" data-dice-trials="600">Roll 600</button>
+              <button class="button button-primary" type="button" data-dice-trials="6000">Roll 6,000</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="result-card" id="dice-result" aria-live="polite">
+          <h3>Outcome evidence</h3>
+          <p id="dice-result-empty">Choose an experiment and roll a sample.</p>
+          <div id="dice-result-content" hidden>
+            <p class="result-lead" id="dice-result-lead"></p>
+            <div class="chart chart-many" id="dice-chart" aria-label="Dice observed and theoretical proportions"></div>
+            <div class="table-wrap">
+              <table>
+                <caption id="dice-table-caption">Dice result data</caption>
+                <thead><tr><th scope="col">Outcome</th><th scope="col">Ways</th><th scope="col">Count</th><th scope="col">Experimental proportion</th><th scope="col">Theoretical probability</th></tr></thead>
+                <tbody id="dice-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <p class="feedback" id="dice-feedback" aria-live="polite"></p>
+        <div class="action-row"><button class="button button-quiet" id="dice-complete" type="button" disabled>Finish dice case</button></div>
+      </section>
+
+      <section class="activity panel" id="game-lab" data-panel="game" aria-labelledby="game-title" hidden>
+        <header class="activity-header">
+          <div><p class="eyebrow">Investigation 3</p><h2 id="game-title">Fair-game designer</h2></div>
+          <span class="status-badge" id="game-status">Open case</span>
+        </header>
+        <div class="definition-strip">
+          <p><strong>Expected points</strong> = probability of scoring × points earned when that outcome occurs.</p>
+          <p>A game is fair here when Side A and Side B have the <strong>same theoretical expected points per round</strong>. Short simulations can still end with different totals.</p>
+        </div>
+
+        <div class="two-column">
+          <section class="work-card" aria-labelledby="rules-title">
+            <h3 id="rules-title">1. Publish your rules</h3>
+            <p>Roll one fair die each round. Side A scores when the roll is at or below its cutoff; otherwise Side B scores.</p>
+            <label for="a-faces">Side A wins on faces 1 through…</label>
+            <select id="a-faces"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+            <label for="a-reward">Side A points when it wins</label>
+            <select id="a-reward"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+            <label for="b-reward">Side B points when it wins</label>
+            <select id="b-reward"><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+            <div class="formula-box" id="game-formula" aria-live="polite"></div>
+          </section>
+          <section class="work-card">
+            <h3>2. Predict, then simulate</h3>
+            <fieldset>
+              <legend>Before the simulation, what do the exact rules predict? <span class="muted">Optional</span></legend>
+              <label><input type="radio" name="game-prediction" value="fair"> Fair: equal expected advantage</label>
+              <label><input type="radio" name="game-prediction" value="A"> Side A has the advantage</label>
+              <label><input type="radio" name="game-prediction" value="B"> Side B has the advantage</label>
+            </fieldset>
+            <details class="hint"><summary>Hint: do the multiplication</summary><p>Find each side's chance to score, then multiply by its reward. Compare those two expected-point values—not just the number of winning faces.</p></details>
+            <div class="trial-buttons">
+              <button class="button button-primary" type="button" data-game-trials="60">Simulate 60</button>
+              <button class="button button-primary" type="button" data-game-trials="600">Simulate 600</button>
+              <button class="button button-primary" type="button" data-game-trials="6000">Simulate 6,000</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="result-card" id="game-result" aria-live="polite">
+          <h3>Simulation evidence</h3>
+          <p id="game-result-empty">Design the rules, make a prediction if you want, and simulate.</p>
+          <div id="game-result-content" hidden>
+            <p class="result-lead" id="game-result-lead"></p>
+            <div class="score-grid" id="game-score-grid"></div>
+            <p class="feedback" id="game-feedback"></p>
+          </div>
+        </section>
+
+        <section class="challenge-card" aria-labelledby="challenge-title">
+          <p class="eyebrow">Fresh application</p>
+          <h3 id="challenge-title">Final challenge: Harbor Signals</h3>
+          <p><strong>New rules:</strong> roll two fair dice. North scores 1 point on a sum of 7. South scores 3 points on a sum of 2 or 12. Every other sum scores 0.</p>
+          <fieldset>
+            <legend>Is this new game theoretically fair?</legend>
+            <label><input type="radio" name="final-prediction" value="fair"> Yes, fair</label>
+            <label><input type="radio" name="final-prediction" value="North"> No, North has the advantage</label>
+            <label><input type="radio" name="final-prediction" value="South"> No, South has the advantage</label>
+          </fieldset>
+          <div class="action-row">
+            <button class="button button-primary" id="run-final" type="button">Simulate 2,000 rounds</button>
+            <button class="button button-quiet" id="game-complete" type="button" disabled>Finish fairness case</button>
+          </div>
+          <div id="final-result" class="feedback" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section class="activity panel summary-panel" id="case-summary" data-panel="summary" aria-labelledby="summary-title" hidden>
+        <p class="eyebrow">Completion summary</p>
+        <h2 id="summary-title">What the evidence supports</h2>
+        <div id="summary-status" class="summary-status"></div>
+        <div class="summary-grid">
+          <article><h3>Theory vs. experiment</h3><p>A theoretical probability comes from the model. An experimental proportion comes from a particular run and can differ from the model.</p></article>
+          <article><h3>Sample size</h3><p>Larger samples often settle nearer to expected proportions, but randomness can still make one larger run farther away than an earlier smaller run.</p></article>
+          <article><h3>Fairness</h3><p>Judge the rules using expected points: probability × reward. A fair model does not guarantee tied points in every simulation.</p></article>
+        </div>
+        <div class="next-practice"><h3>Next practice</h3><p id="next-practice"></p></div>
+        <button class="button" type="button" data-view="coin">Replay an investigation</button>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>Core content and simulation run entirely in your browser. Adult-facing sources, model notes, and teaching guidance are supplied in <code>EDUCATOR_GUIDE.md</code>.</p>
+  </footer>
+
+  <noscript><p class="noscript">Probability Detective needs JavaScript enabled because the experiments run locally in your browser.</p></noscript>
+</body>
+</html>
