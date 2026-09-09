@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-09-09T05:01:19.753Z",
+  "browser": "Google Chrome headless (installed desktop Chrome) via Chrome DevTools Protocol",
+  "appUrl": "http://127.0.0.1:4173",
+  "viewports": [
+    "1280x1000",
+    "768x900",
+    "360x900"
+  ],
+  "checks": [
+    {
+      "name": "initial onboarding visible",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "1280px body has no horizontal overflow",
+      "pass": true,
+      "details": "{\"scrollWidth\":1280,\"innerWidth\":1280}"
+    },
+    {
+      "name": "lesson starts without reload",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "0% heads coin is exact",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "100% heads coin is exact",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "coin comparison contains 10/100/1000 runs",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "coin table counts equal 1000",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "incorrect streak answer gets counterexample feedback",
+      "pass": true,
+      "details": "Not quite. Randomness does not “owe” a tail. A fair coin has P(heads) = 1/2 even after five heads."
+    },
+    {
+      "name": "correct streak answer explains unchanged one-half chance",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "two-dice table has outcomes 2 through 12",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "two-dice counts equal 600",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "dice chart and table both populated from run",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "sum-of-seven explanation identifies six routes",
+      "pass": true,
+      "details": "Correct. Six ordered pairs make 7: 1+6, 2+5, 3+4, 4+3, 5+2 and 6+1."
+    },
+    {
+      "name": "designer publishes exact expected-point arithmetic",
+      "pass": true,
+      "details": "\n    Side A: faces 1, 2 → P(A) = 2/6. Expected A = 2/6 × 2 = 0.667 points/round.\n    Side B: faces 3, 4, 5, 6 → P(B) = 4/6. Expected B = 4/6 × 1 = 0.667 points/round.\n    The rules are theoretically fair."
+    },
+    {
+      "name": "game simulation has 600 scoring outcomes",
+      "pass": true,
+      "details": "\n    Side A simulation402 points201 scoring rolls × 2 points\n    Side B simulation399 points399 scoring rolls × 1 points"
+    },
+    {
+      "name": "incorrect final fairness answer gets worked calculation",
+      "pass": true,
+      "details": "Use the route counts to revise. North: P(sum 7) = 6/36, so expected points = 6/36 × 1 = 1/6. South: P(sum 2 or 12) = 2/36, so expected points = 2/36 × 3 = 6/36 = 1/6. The rules are fair. In this 2,000-round run North scored 318 and South scored 387; a tie was never required."
+    },
+    {
+      "name": "final challenge identifies theoretical fairness without promising a tie",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "completion summary shows all three complete",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "768px body has no horizontal overflow",
+      "pass": true,
+      "details": "{\"scrollWidth\":753,\"innerWidth\":768}"
+    },
+    {
+      "name": "keyboard Enter activates activity navigation",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "reduced-motion preference suppresses transitions",
+      "pass": true,
+      "details": "1e-05s"
+    },
+    {
+      "name": "mobile emulation exposes touch points",
+      "pass": true,
+      "details": "1"
+    },
+    {
+      "name": "360px body has no horizontal overflow",
+      "pass": true,
+      "details": "{\"scrollWidth\":360,\"innerWidth\":360}"
+    },
+    {
+      "name": "mobile primary touch target is at least 44px high",
+      "pass": true,
+      "details": "{\"x\":107.796875,\"y\":24.2421875,\"w\":134.8125,\"h\":48.609375}"
+    },
+    {
+      "name": "emulated touch event reaches a core experiment button",
+      "pass": true,
+      "details": "10"
+    },
+    {
+      "name": "touch-targeted semantic button performs the experiment",
+      "pass": true,
+      "details": "4 heads and 6 tails in 10 flips. Observed heads: 40.0%; theoretical heads: 50.0%. This sample differs from the model by 10.0 percentage points."
+    },
+    {
+      "name": "reset returns to onboarding without page reload",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "reset clears locally stored progress",
+      "pass": true,
+      "details": ""
+    }
+  ],
+  "summary": {
+    "passed": 28,
+    "failed": 0
+  }
+}
